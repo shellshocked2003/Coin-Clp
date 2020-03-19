@@ -3,8 +3,6 @@ linux: &linux
    dist: xenial
    language: python
    python: "3.7"
-   services:
-     - docker
      
 osx: &osx
    os: osx
