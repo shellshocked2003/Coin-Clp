@@ -19,7 +19,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pip install cmake --upgrade
     brew install gcc
 else
-    apt install gfortran
+    sudo apt install gfortran
 fi
 
 pip install conan --upgrade
