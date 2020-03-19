@@ -1,7 +1,7 @@
 ## Package Status
 
 | Bintray | Linux & macOS |
-|:--------:|:---------:|:-----------------:|
+|:--------:|:-----------------:|
 |[ ![Download](https://api.bintray.com/packages/nheri-simcenter/simcenter/mkl-static%3Asimcenter/images/download.svg) ](https://bintray.com/nheri-simcenter/simcenter/mkl-static%3Asimcenter/_latestVersion)|[![Build Status](https://travis-ci.org/shellshocked2003/mkl-static.svg?branch=master)](https://travis-ci.org/shellshocked2003/mkl-static)|
 
 ## Conan Information
