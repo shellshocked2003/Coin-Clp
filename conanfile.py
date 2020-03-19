@@ -25,9 +25,9 @@ class clpConan(ConanFile):
     def build(self):
         # Build using coinbrew script        
         if self.options.shared:
-            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --parallel-jobs=8 --prefix=" + self._install_subfolder)
+            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --test --verbosity 2 --prefix=" + self._install_subfolder)
         else:
-            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --fully-static --parallel-jobs=8 --prefix=" + self._install_subfolder)
+            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --fully-static --test --verbosity 2 --prefix=" + self._install_subfolder)
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
