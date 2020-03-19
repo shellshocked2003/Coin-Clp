@@ -1,8 +1,7 @@
 from conans import ConanFile, CMake, tools
 import os
-# import subprocess
 
-class smeltConan(ConanFile):
+class clpConan(ConanFile):
     name = "Clp"
     version = "1.17.5"
     description = "Open-Source Linear Programming Solver"
@@ -14,17 +13,10 @@ class smeltConan(ConanFile):
     default_options = {"shared": False}
     build_policy = "missing"
 
-    # Custom attributes for Bincrafters recipe conventions
+    # Custom attributes
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
     _install_subfolder = "install_subfolder"
-
-    # scm = {
-    #     "type": "git",  # Use "type": "svn", if local repo is managed using SVN
-    #     "subfolder": _source_subfolder,
-    #     "url": "auto",
-    #     "revision": "auto"
-    # }
     
     def source(self):
        git = tools.Git(folder=self._build_subfolder)
