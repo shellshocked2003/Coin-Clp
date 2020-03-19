@@ -19,7 +19,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pip install cmake --upgrade
     brew install gcc
 else
-    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
     sudo apt update
     sudo apt install gfortran-7
 fi
