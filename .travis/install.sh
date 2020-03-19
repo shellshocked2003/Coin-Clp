@@ -17,6 +17,9 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pyenv activate conan
 
     pip install cmake --upgrade
+    brew install gcc
+else
+    apt install gfortran
 fi
 
 pip install conan --upgrade
