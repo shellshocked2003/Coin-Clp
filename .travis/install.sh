@@ -19,6 +19,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pip install cmake --upgrade
     brew install gcc
 else
+    sudo apt update
     sudo apt install gfortran
 fi
 
