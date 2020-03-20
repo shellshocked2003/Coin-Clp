@@ -1,8 +1,8 @@
 ## Package Status
 
-| Bintray | Linux & macOS |
-|:--------:|:-----------------:|
-|[ ![Download](https://api.bintray.com/packages/nheri-simcenter/simcenter/mkl-static%3Asimcenter/images/download.svg) ](https://bintray.com/nheri-simcenter/simcenter/mkl-static%3Asimcenter/_latestVersion)|[![Build Status](https://travis-ci.org/shellshocked2003/mkl-static.svg?branch=master)](https://travis-ci.org/shellshocked2003/mkl-static)|
+| Bintray |
+|:--------:|
+|[ ![Download](https://api.bintray.com/packages/nheri-simcenter/simcenter/Clp%3Asimcenter/images/download.svg) ](https://bintray.com/nheri-simcenter/simcenter/Clp%3Asimcenter/_latestVersion)|
 
 ## Conan Information
 
@@ -32,7 +32,3 @@ the [LICENSE.md](LICENSE.md) file in this repository.  The licenses
 included with all Conan packages published by the SimCenter can be found
 in the Conan package directories in the following locations, relative
 to the Conan Cache root (`~/.conan` by default).
-
-## Acknowledgments
-
-This Conan packaging configuration is based on what is provided by [Bincrafters](https://github.com/bincrafters/templates).
