@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+import shutil
 import os
 
 class clpConan(ConanFile):
@@ -10,7 +11,7 @@ class clpConan(ConanFile):
     url = "https://github.com/coin-or/Clp"
     settings = {"os": ["Linux", "Macos"], "build_type": None, "compiler": None, "arch": ["x86_64"]}
     options = {"shared": [True, False]}
-    default_options = {"shared": False}
+    default_options = {"shared": True}
     build_policy = "missing"
 
     # Custom attributes
@@ -21,34 +22,23 @@ class clpConan(ConanFile):
     def source(self):
        git = tools.Git(folder=self._build_subfolder)
        git.clone("https://github.com/shellshocked2003/Coin-Clp.git", "master")
-    
+       
     def build(self):
         # Build using coinbrew script        
         if self.options.shared:
-            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --test --verbosity 2 --prefix=" + self._install_subfolder)
+            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --test --verbosity 2 --prefix=" + self.package_folder)
         else:
-            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --fully-static --test --verbosity 2 --prefix=" + self._install_subfolder)
+            self.run(self._build_subfolder + "/coinbrew.sh build Clp:releases/1.17.5 --fully-static --test --verbosity 2 --prefix=" + self.package_folder)            
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
-        self.copy("*.h", dst="include", src=self._install_subfolder + "/include")
-        self.copy("*.hpp", dst="include", src=self._install_subfolder + "/include")        
-        self.copy("*.tcc", dst="include", src=self._install_subfolder + "/include")
-
-        self.copy("*.dll", dst="bin", src=self._install_subfolder + "/bin")
-        self.copy("*.lib", dst="lib", src=self._install_subfolder + "/lib")
-        self.copy("*.so", dst="lib", src=self._install_subfolder + "/lib")
-        self.copy("*.dylib", dst="lib", src=self._install_subfolder + "/lib")
-        self.copy("*.a", dst="lib", src=self._install_subfolder + "/lib")
-        self.copy("*.la", dst="lib", src=self._install_subfolder + "/lib")        
+        shutil.rmtree(self.package_folder + "/share")
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
-        self.cpp_info.includedirs = ['include']
+        self.cpp_info.includedirs = ['include/coin', 'include']
+
+        # Add to path so shared objects can be found
+        self.env_info.PATH.append(os.path.join(self.package_folder, "lib"))
         self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
-        # Add to path so shared objects can be found        
-        if self.options.shared:
-            self.env_info.PATH.append(os.path.join(self.package_folder, "lib"))
-            self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))                        
-            self.env_info.LD_LIBRARY_PATH.append(os.path.join(self.package_folder, "lib"))
-            self.env_info.DYLD_LIBRARY_PATH.append(os.path.join(self.package_folder, "lib"))
+        self.env_info.LD_LIBRARY_PATH.append(os.path.join(self.package_folder, "lib"))
